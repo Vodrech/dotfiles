@@ -1,0 +1,18 @@
+dconf/
+spotifyd/
+systemd/
+spotify-tui/
+polybar/
+picom/
+nitrogen/
+neofetch/
+ncspot/
+google-chrome/
+discord/
+cava/
+pulse/
+
+pavucontrol.ini
+
+# Package Manager for Nvim compiled packages
+nvim/plugin/packer_compiled.lua
