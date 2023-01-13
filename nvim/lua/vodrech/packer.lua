@@ -34,6 +34,15 @@ return require('packer').startup(function(use)
 	  end
   }
 
+  use {
+	  'ThePrimeagen/harpoon',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+  }
+
+  use {
+	
+  } 
+
   -- Colorcheme on Code
   use {
 	  'nvim-treesitter/nvim-treesitter',
@@ -52,7 +61,7 @@ return require('packer').startup(function(use)
   requires = {
     -- LSP Support
     {'neovim/nvim-lspconfig'},
-    {'williamboman/mason.nvim'},
+    {'williamboman/mason.nvim'}, -- Helps alot with LSP installs
     {'williamboman/mason-lspconfig.nvim'},
 
     -- Autocompletion

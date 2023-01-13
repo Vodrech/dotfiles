@@ -4,6 +4,7 @@ create_group("user-config", { clear = true })
 
 -- Required
 require("vodrech.options") -- Default options
+require("vodrech.core") -- Core Settings
 require("vodrech.remap") -- Default remaps/keymaps
 
 -- Optional
