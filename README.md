@@ -24,6 +24,7 @@ These programs are setup with a launch scripts in the i3 configuration to make a
 - Nitrogen (Wallpaper engine)
 - Polybar (Statusbar)
 - Picom (Compositor) [Xorg]
+- Dunst (Notification Daemon)
 
 # DS - Display Server
 
@@ -52,5 +53,4 @@ These are additional packages/programs that is used on a daily basis
 - Cava (Music Visualizer) [config: cava]
 - Neofetch (OS Describer) [config: neofetch]
 - Git (Version Control) [config: etc/gitconfig, auto-create: NO]
-
-
+- Timer (Time Visualizer) [config: timer-bin]
