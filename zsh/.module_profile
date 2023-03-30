@@ -1,0 +1,44 @@
+#          _  _
+#         (.)(.)
+#     ,-.(.____.),-.
+#    ( \ \ '--' / / )
+#     \ \ / ,. \ / /
+#      ) '| || |' (
+#  OoO'- OoO''OoO -'OoO
+# Modules Profile
+# Extend functionality with no slowness
+
+# Module Variables
+export MODULE_HOME="$CONFIG_HOME/modules"
+alias so="source_module" # Sources the modules
+alias sm="show_modules" # Shows she modules
+alias lm="cat /tmp/zsh.log" # Shows Loaded modules
+
+# Global Modules
+source $MODULE_HOME/aliasrc
+source $MODULE_HOME/endpointrc
+source $MODULE_HOME/secretrc
+
+echo " Information: To extend run command 'sm'"
+
+# Showing modules & help
+show_modules(){
+	echo "\n so <module>"
+	ls $MODULE_HOME/
+}
+
+# Sourcing the modules
+source_module() {
+	MODULE=$1 # Choosen Modules
+
+	if [ -f $MODULE_HOME/$MODULE ]; then
+		source $MODULE_HOME/$MODULE
+	else
+		echo "module not found..."
+	fi
+}
+
+# Prints out the loaded modules
+loaded_modules() {
+	cat /tmp/zsh.log
+}
