@@ -26,4 +26,4 @@
 --                             ;`-
 --                            :\ 
 
-require("vodrech") -- Importing the user configurations
+require("vodrech") -- Loading user settings

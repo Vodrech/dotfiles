@@ -1,5 +1,14 @@
-require('lualine').setup {
-  options = {
+--        .-"-.
+--       /  - -\
+--       \  @ @/
+--        (_ <_)  Statusbar configurations [LUALINE]
+--        _)(`
+--    ,_(`_))\
+--     "-\)__/
+--      __|||__
+--     ((__|__)) :h lualine
+-- OPTIONS
+local option = {
     icons_enabled = true,
     theme = 'auto',
     component_separators = { left = '', right = ''},
@@ -16,7 +25,10 @@ require('lualine').setup {
       tabline = 1000,
       winbar = 1000,
     }
-  },
+}
+
+require('lualine').setup {
+  options = option,
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
@@ -36,5 +48,6 @@ require('lualine').setup {
   tabline = {},
   winbar = {},
   inactive_winbar = {},
-  extensions = {}
+  extensions = {},
+  theme = 'tokyonight'
 }

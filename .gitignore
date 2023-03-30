@@ -16,3 +16,4 @@ pavucontrol.ini
 
 # Package Manager for Nvim compiled packages
 nvim/plugin/packer_compiled.lua
+nvim/lazy-lock.json
