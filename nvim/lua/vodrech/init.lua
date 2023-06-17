@@ -48,3 +48,4 @@ require("vodrech.option") -- Options
 require("vodrech.remap") -- Keymappings
 require("vodrech.plugin") -- Plugins
 require("vodrech.experimental") -- Experimental
+require("vodrech.custom.presentation") -- Presentation

@@ -7,12 +7,26 @@
 
 -- Experimental
 local experimental = {
-	{'github/copilot.vim', priority=100}
+	{'rmagatti/auto-session', priority = 105},
+	{'folke/zen-mode.nvim', priority = 106},
+	{'iamcco/markdown-preview.nvim',
+		priority = 107,
+		config = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
+	{'nvim-neo-tree/neo-tree.nvim', 
+		priority = 108,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-tree/nvim-web-devicons',
+			'MunifTanjim/nui.nvim'
+		}
+	}
 }
-
 -- Local
 local local_plugins = {
-	{dir = tostring(os.getenv("NVIM_LOCAL_PLUGIN")) .. "skalbagge.nvim", priority = 200},
+	{dir = tostring(os.getenv("NVIM_LOCAL_PLUGIN")) .. "heartbeat.nvim", priority = 200},
 }
 
 -- Utils
@@ -34,6 +48,7 @@ local modules = {
 		{'folke/neodev.nvim', dependencies = {'hrsh7th/nvim-cmp'}}, -- Neovim config helper
 	}}},
 	completion = {
+		{'github/copilot.vim', priority=100},
 		{'hrsh7th/nvim-cmp',  dependencies = {'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'}},
 		{'folke/which-key.nvim'}, -- Show possible key bindings of command
 		{'lewis6991/gitsigns.nvim'}, -- NEEDED?

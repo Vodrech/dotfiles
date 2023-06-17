@@ -1,35 +1,14 @@
 -- Vodrech experimental functions
+-- Needs to have a variable that has the session path
 
-local Events = {
-	"BufNewFile",
-	"BufRead",
-	"BufReadPost",
-	"BufReadCmd",
-	"FileReadPre",
-	"FileReadPost",
-	"FileReadCmd",
-	"FilterReadPre",
-	"FilterReadPost",
-	"BufWrite",
-	"BufWritePre",
-	"BufWriteCmd",
-	"FileWritePre",
-	"FileWritePost",
-	"FileWriteCmd",
-	"FileAppendPre",
-	"FileAppendPost",
-	"FileAppendCmd",
-	"FilterWritePre",
-	"FilterWritePos",
-}
--- vim.api.nvim_create_autocommand("BufEnter", "test.lua", "echo 'Hello'")
-
-local create_autocmd = vim.api.nvim_create_autocmd
-
---create_autocmd({"FileType"}, {
---	group = "vodrech",
---	pattern = {"lua"},
---	callback = function()
---		vim.notify("Loaded lua file")
---	end,
---})
+local auto_sessions = require("auto-session")
+auto_sessions.setup({
+	auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+	log_level = "error",
+	session_lens = {
+    		-- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
+    		load_on_setup = true,
+    		theme_conf = { border = true },
+    		previewer = false,
+  },
+})
