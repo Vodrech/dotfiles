@@ -14,7 +14,7 @@
 
 * {
     font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 8px;
+    font-size: 26px;
 }
 
 window#waybar {
@@ -63,36 +63,28 @@ button:hover {
     background-color: #eb4d4b;
 }
 
-#pulseaudio
-{
-    padding: 0 10px;
-}
-
-#pulseaudio {
-    color: @maroon;
-}
-
 #temperature, #memory, #cpu, #network, #language, #pulseaudio{
 	color: @text;
 	font-weight: bold;
 	background-color: @primary;
 	border-radius: 20px;
-	padding-left: 5px;
-	padding-right: 5px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 #pulseaudio {
-	padding-right: 10px;
+	font-size: 26px;
+	padding-right: 20px;
 	padding-left: 10px;
 }
 
 #clock {
   color: @text-standalone;
-  font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  font-size: 48px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 #window {
@@ -102,7 +94,7 @@ button:hover {
 #custom-os-icon {
     color: @primary;
     padding-right: 5px;
-    font-size: 20px;
+    font-size: 48px;
 }
 
 .modules-right,.modules-left,.modules-center {
@@ -113,9 +105,9 @@ button:hover {
     opacity: 0.7;
 }
 
-.modules-right {
+.modules-left {
+	padding-right: 40px;
 }
 
-.modules-left {
-    padding: 0 20px;
+.modules-right {
 }
