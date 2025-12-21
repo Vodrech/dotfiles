@@ -1,63 +1,94 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
     "modules-left": [
-	"hyprland/workspaces"
+	"hyprland/workspaces",
+	"custom/media"
     ],
     "modules-center": [
-      "network"
+	"cpu",
+	"temperature",
+	"memory"
     ],
     "modules-right": [
+	"network",
 	"hyprland/language",
-	"clock" // should always be last
+	"pulseaudio",
+	"clock"
     ],
-    "hyprland/workspaces": {
-        "disable-scroll": true,
+        "hyprland/workspaces": {
         "format": "{icon}",
+        "on-click": "activate",
+        "all-outputs": true,
         "format-icons": {
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5"
+            "active": "",
+            "default": "",
+            "urgent": ""
         },
-        "on-click": "activate"
+        "persistent-workspaces": {
+            "*": 5
+        }
     },
     "hyprland/language": {
-    "format": "Lang: {}",
+    "format": "<span size='80%'> </span> {}",
     "format-en": "us",
-    "format-en-colemak_dh": "colemak",
-    "keyboard-name": "at-translated-set-2-keyboard"
+    "format-en-colemak": "cole",
+    "keyboard-name": "at-translated-set-2-keyboard",
+    "on-click": "~/.config/waybar/scripts/kb_layout.sh"
 },
+"cpu": {
+  "format": "{usage}%  ",
+  "interval": 10,
+  "max-length": 10
+},
+"memory": {
+  "format": "<span color='red' size='80%'>{used}</span> | <span color='green' size='80%'>{total}</span><span size='80%'> </span>"
+},
+"temperature": {
+  "format": "{temperatureC}󰔄",
+  "format-warning": "<span color='yellow'>{temperatureC}󰔄</span>",
+  "format-critical": "<span color='red'>{temperatureC}󰔄</span>",
+  "critical-threshold": 80,
+  "warning-threshold": 50,
+  "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+  "tooltip": false,
+  "interval": 5
+},
+"load": {
+    "interval": 10,
+    "format": "load: {load1}",
+    "max-length": 10
+},
+
+  "pulseaudio": {
+    "format": "<span font='10px'>{icon}</span>",
+    "on-click": "kitty --class=Wiremix -e wiremix",
+    "on-click-right": "pamixer -t",
+    "tooltip-format": "🎵 {volume}%",
+    "scroll-step": 5,
+    "format-muted": "",
+    "format-icons": {
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    }
+  },
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "network": {
-    "interface": "wlp2s0",
-    "format": "wowowo",
-    "format-wifi": "{essid} ({signalStrength}%) ",
-    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
-    "format-disconnected": "", //An empty format will hide the module.
-    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} ",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50
-},
+"network": {
+"format-wifi": "  {essid}",
+"format-ethernet": "󰈁 | {bandwidthUpBytes}<span size='80%' rise='2pt'> </span> | {bandwidthDownBytes}<span size='80%'> </span>",
+"format-disconnected": "<span color='red'> Disconnected</span>",
+"tooltip": false,
+"on-click": "nm-connection-editor"
+}
+,
     "custom/media": {
         "format": "{icon} {text}",
         "return-type": "json",
