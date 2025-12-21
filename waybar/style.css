@@ -1,9 +1,20 @@
+/* Nice color pallete for inspo
+ * https://creativebooster.net/blogs/colors/sunset-color-palettes
+ */
 
+/*import the wanted theme | /styles/{name}-theme.css */
+/* Available themes:
+ * - sandy
+ * - flower
+ * 
+ *
+ */
 @import "colors.css";
+@import "styles/sandy-theme.css";
 
 * {
     font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-size: 8px;
 }
 
 window#waybar {
@@ -28,14 +39,14 @@ button:hover {
 }
 
 /* you can set a style on hover for any module like this */
-#pulseaudio:hover {
+#pulseaudio:hover, #cpu:hover {
     background-color: @surface2;
 }
 
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #ffffff;
+    color: @primary;
 }
 
 
@@ -52,11 +63,6 @@ button:hover {
     background-color: #eb4d4b;
 }
 
-#clock,
-#battery,
-#memory,
-#temperature,
-#network,
 #pulseaudio
 {
     padding: 0 10px;
@@ -66,40 +72,48 @@ button:hover {
     color: @maroon;
 }
 
-#network {
-    color: @yellow;
+#temperature, #memory, #cpu, #network, #language, #pulseaudio{
+	color: @text;
+	font-weight: bold;
+	background-color: @primary;
+	border-radius: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
-#temperature {
-    color: @sky;
-}
-
-#memory {
-  color: @green
-}
-
-#cpu {
-	color: @green
-}
-
-#language {
-  color: @flamingo
+#pulseaudio {
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 #clock {
-    color: @flamingo;
+  color: @text-standalone;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 #window {
     color: @rosewater;
 }
 
+#custom-os-icon {
+    color: @primary;
+    padding-right: 5px;
+    font-size: 20px;
+}
+
 .modules-right,.modules-left,.modules-center {
     background-color: @base;
-    border-radius: 15px;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 0.7;
 }
+
 .modules-right {
-    padding: 0 10px;
 }
 
 .modules-left {
