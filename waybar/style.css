@@ -1,113 +1,260 @@
-/* Nice color pallete for inspo
- * https://creativebooster.net/blogs/colors/sunset-color-palettes
- */
+@define-color color0 #cbc0b7;
+@define-color color1 #504030;
+@define-color color2 #605040;
+@define-color color3 #202020;
+@define-color color4 #706050;
+@define-color color5 #606050;
+@define-color color6 #605050;
+@define-color color7 #707060;
+@define-color color8 #fffeff;
+@define-color color9 #fffeff;
+@define-color color10 #000004;
+@define-color color11 #000000;
+@define-color color12 #040000;
+@define-color color13 #00105a;
+@define-color color14 #1f0000;
+@define-color color15 #000000;
 
-/*import the wanted theme | /styles/{name}-theme.css */
-/* Available themes:
- * - sandy
- * - flower
- * 
- *
- */
-@import "colors.css";
-@import "styles/sandy-theme.css";
+
 
 * {
-    font-family: "JetBrainsMono Nerd Font", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 26px;
+  border: none;
+  border-radius: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 13px;
+  min-height: 0;
 }
+
+
 
 window#waybar {
-    background-color: rgba(0,0,0,0);
-    border-radius: 13px;
-    transition-property: background-color;
-    transition-duration: .5s;
+  background: transparent;
+  color: @color8;
 }
 
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
+
+
+#waybar > box {
+  margin: 6px 6px 0px 6px;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+
+
+.modules-left > widget,
+.modules-center > widget,
+.modules-right > widget {
+  padding: 0 4px;
 }
 
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover, #cpu:hover {
-    background-color: @surface2;
+
+
+.modules-left > widget > *,
+.modules-center > widget > *,
+.modules-right > widget > * {
+  background: alpha(@color2, 0.85);
+  border-radius: 8px;
+  padding: 3px 8px;
+  margin: 0 4px;
+  border: 1px solid alpha(@color3, 0.6);
+  color: @color8;
+}
+
+
+
+.modules-center > widget > * {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+
+#workspaces {
+  padding: 0 2px;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: @primary;
+  background: transparent;
+  color: @color8;
+  padding: 3px 9px;
+  margin: 0 2px;
+  border-radius: 6px;
+  border: 1px solid transparent;
 }
-
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+  background: alpha(@color4, 0.35);
 }
 
-#workspaces button.focused {
-    background-color: @lavender;
-    box-shadow: inset 0 -3px #ffffff;
+#workspaces button.active {
+  background: @color4;
+  color: @color8;
+  border-color: alpha(@color8, 0.5);
+  font-weight: 600;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+  background: @color14;
+  color: @color8;
 }
 
-#temperature, #memory, #cpu, #network, #language, #pulseaudio{
-	color: @text;
-	font-weight: bold;
-	background-color: @primary;
-	border-radius: 20px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
 
-#pulseaudio {
-	font-size: 26px;
-	padding-right: 20px;
-	padding-left: 10px;
-}
-
-#clock {
-  color: @text-standalone;
-  font-size: 48px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-}
 
 #window {
-    color: @rosewater;
+  font-weight: 600;
+  color: @color8;
 }
 
-#custom-os-icon {
-    color: @primary;
-    padding-right: 5px;
-    font-size: 48px;
+#window.empty {
+  color: alpha(@color8, 0.45);
 }
 
-.modules-right,.modules-left,.modules-center {
-    background-color: @base;
-    border-radius: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    opacity: 0.7;
+
+
+#mode {
+  background: @color13;
+  color: @color8;
+  border-radius: 8px;
+  border: 1px solid alpha(@color8, 0.4);
+  padding: 3px 10px;
 }
 
-.modules-left {
-	padding-right: 40px;
+
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#custom-spotify,
+#tray,
+#mode {
+  margin: 0 3px;
 }
 
-.modules-right {
+
+
+#clock {
+  color: @color8;
+  font-weight: 500;
+}
+
+
+
+#battery {
+  color: @color8;
+}
+
+#battery.charging {
+  color: @color5;
+}
+
+@keyframes battery-warn {
+  0% {
+    background-color: alpha(@color1, 0.35);
+    color: @color8;
+  }
+  100% {
+    background-color: alpha(@color1, 0.55);
+    color: @color8;
+  }
+}
+
+#battery.warning:not(.charging) {
+  animation: battery-warn 0.7s ease-in-out infinite alternate;
+  border-radius: 8px;
+}
+
+
+
+#cpu,
+#memory {
+  color: @color8;
+}
+
+#cpu {
+  border-right: 1px solid alpha(@color3, 0.6);
+  padding-right: 7px;
+}
+
+#memory {
+  padding-left: 7px;
+}
+
+
+
+#network {
+  color: @color8;
+}
+
+#network.disconnected {
+  background: @color14;
+  color: @color8;
+  border-radius: 8px;
+}
+
+
+
+#pulseaudio {
+  color: @color8;
+}
+
+#pulseaudio.muted {
+  color: alpha(@color8, 0.5);
+  background: alpha(@color3, 0.6);
+}
+
+
+
+#custom-spotify {
+  color: @color8;
+}
+
+#custom-spotify.playing {
+  color: @color5;
+}
+
+
+
+#tray {
+  padding-right: 6px;
+}
+
+#tray > .passive {
+  opacity: 0.4;
+}
+
+#tray > .needs-attention {
+  background: @color1;
+  color: @color8;
+  border-radius: 6px;
+}
+
+
+
+tooltip {
+  background: alpha(@color3, 0.95);
+  border-radius: 6px;
+  padding: 4px 8px;
+  border: 1px solid alpha(@color2, 0.8);
+}
+
+tooltip label {
+  color: @color8;
+}
+
+#battery,
+#network,
+#pulseaudio,
+#custom-swaync,
+#tray {
+  min-width: 22px;
+}
+
+#battery,
+#network,
+#pulseaudio,
+#custom-swaync {
+  padding-left: 8px;
+  padding-right: 4px;
 }

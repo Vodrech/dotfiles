@@ -1,15 +1,15 @@
-# File: kb_layout.sh
-# Toggle US <-> FR layout for Hyprland via hyprctl
+current=$(hyprctl getoption input:kb_layout | awk '/str:/ {print $2}')
 
-current=$(hyprctl getoption input:kb_layout)
-
-if [ "$1" == "toggle" ]; then
-  if [ "$current" == "us" ]; then
-    hyprctl keyword input:kb_layout colemak
-  else
-    hyprctl keyword input:kb_layout us
-  fi
+if [ "$1" = "toggle" ]; then
+    if [ "$current" = "us" ]; then
+        hyprctl keyword input:kb_layout colemak
+        current="colemak"
+    else
+        hyprctl keyword input:kb_layout us
+        current="us"
+    fi
 fi
 
-# Output the current layout for Waybar
+# Output for Waybar
 echo "$current"
+
