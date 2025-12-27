@@ -14,8 +14,8 @@
     ],
     "modules-right": [
 	"network",
-	"hyprland/language",
-	"pulseaudio",
+	"custom/keyboard",
+	"custom/microphone",
 	"clock"
     ],
     "custom/os-icon": {
@@ -105,5 +105,17 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/keyboard": {
+	    "format": "{}",
+	    "exec": "~/.config/waybar/scripts/kb_layout.sh",
+	    "interval": 1,
+	    "on-click": "hyprctl switchxkblayout current next",
+	    "tooltip": "false"
+    },
+    "custom/microphone": {
+	    "format": "",
+	    "interval": 1,
+	    "tooltip-format": "info 123"
     }
 }

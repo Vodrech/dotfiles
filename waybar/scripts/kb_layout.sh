@@ -1,15 +1,17 @@
-current=$(hyprctl getoption input:kb_layout | awk '/str:/ {print $2}')
+# PREREQUISITE: jq
+current=$(hyprctl devices -j | jq -r '.keyboards[] | select(.main==true) | .active_keymap' | xargs)
+# echo "Debug: kb_layout script output: $current" | systemd-cat -t waybar-kb # Logging to journalctl enable if wrong
+layout="err"
 
-if [ "$1" = "toggle" ]; then
-    if [ "$current" = "us" ]; then
-        hyprctl keyword input:kb_layout colemak
-        current="colemak"
-    else
-        hyprctl keyword input:kb_layout us
-        current="us"
-    fi
+if [[ "$current" == "English (US)" ]]; then
+	layout="us"
+elif [[ "$current" == "English (Colemak)" ]]; then
+	layout="cole"
+elif [[ $current == *Swedish* ]]; then
+	layout="se"
+else
+	layout="??"
 fi
 
 # Output for Waybar
-echo "$current"
-
+echo "$layout"
