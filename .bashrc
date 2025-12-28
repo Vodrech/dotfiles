@@ -8,5 +8,4 @@ BLUE="\[\e[34m\]"
 # Terminal line
 export PS1="${CYAN} ${RESET}${BLUE}\u${RESET}:\w: "
 
-# System Information
-nitch
+ufetch
