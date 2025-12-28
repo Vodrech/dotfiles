@@ -1,4 +1,14 @@
-NIXOS | 2025-12
+# DOTFILES
 
-# Description
-This "should" be a generalised dotfiles repository, but most likely aren't, best used with NIXOS
+Vodrech dotfiles, should be ready to use out of the box, just reminder that some are dependent on each other
+
+## Information
+```
+Currently: NixOS 
+Previous: Arch
+
+-- Main Usage
+Wayland (X11 replacement)
+Hyprland (Wayland compositor)
+Bash (SHELL)
+```
