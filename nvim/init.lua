@@ -5,11 +5,11 @@ vim.g.mapleader = " "
 -- # Base Config | Put stuff here incase the config crashes and stuff just works :)
 
 -- -- # Movement
-vim.api.nvim_set_keymap("n", "<C-Right>", ":wincmd l<cr>", {noremap = false, silent = true})
-vim.api.nvim_set_keymap("n", "<C-Left>", ":wincmd h<cr>", {noremap = false, silent = true})
-vim.api.nvim_set_keymap("n", "<C-Up>", ":wincmd k<cr>", {noremap = false, silent = true})
-vim.api.nvim_set_keymap("n", "<C-Down>", ":wincmd j<cr>", {noremap = false, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>ff", ":Explore<cr>", {noremap = false, silent = true})
+vim.keymap.set("n", "<C-Right>", ":wincmd l<cr>", {noremap = false, silent = true})
+vim.keymap.set("n", "<C-Left>", ":wincmd h<cr>", {noremap = false, silent = true})
+vim.keymap.set("n", "<C-Up>", ":wincmd k<cr>", {noremap = false, silent = true})
+vim.keymap.set("n", "<C-Down>", ":wincmd j<cr>", {noremap = false, silent = true})
+vim.keymap.set("n", "<leader>ff", ":Explore<cr>", {noremap = true, silent = true})
 
 -- -- # Options
 vim.o.number = true
@@ -17,8 +17,15 @@ vim.o.relativenumber = true
 vim.o.autoindent = true
 vim.o.softtabstop = 2
 vim.o.tabstop=2
+vim.o.shiftwidth = 2
 vim.o.cursorline = true
 vim.o.scrolloff = 8
+vim.o.laststatus = 3
 
--- Imports
--- pscall(require("options"))
+-- -- # LSP -- checkhealth vim.lsp
+vim.lsp.enable({"lua_ls"})
+
+-- IMPORTS
+pcall(require("base")) -- Base configurations
+require("config.lazy") -- Package Manager
+pcall(require("config.lsp")) -- LSP CONFIG
