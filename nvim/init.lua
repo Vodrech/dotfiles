@@ -23,7 +23,7 @@ vim.o.scrolloff = 8
 vim.o.laststatus = 3
 
 -- -- # LSP -- checkhealth vim.lsp
-vim.lsp.enable({"lua_ls"})
+vim.lsp.enable({"lua_ls", "rust_analyzer", "ts_ls"})
 
 -- IMPORTS
 pcall(require("base")) -- Base configurations
