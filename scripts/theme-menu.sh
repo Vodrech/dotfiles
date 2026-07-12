@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Passes the themes to the walker
 
-THEME=$(printf "Sandy\nRandom" | walker -d)
+THEME=$(printf "Sandy\nChill\nWoods\nRandom" | walker -d)
 
 [ -z "$THEME" ] && exit 0
 
