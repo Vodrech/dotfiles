@@ -10,9 +10,9 @@
 -- require("myColors")
 
 -- Loading the Modules
-local monitor = require("modlues.monitor")
-local auto_start = require("modlues.auto_start")
-local environment = require("modlues.environment")
+local monitor = require("modules.monitor")
+local auto_start = require("modules.auto_start")
+local environment = require("modules.environment")
 
 -- Setup the modules
 monitor.setup()
