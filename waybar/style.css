@@ -2,6 +2,7 @@
 
 * {
     font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
 }
 
 window#waybar {
@@ -9,47 +10,10 @@ window#waybar {
     color: @foreground;
 }
 
-* {
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 14px;
-    border: none;
-    min-height: 0;
-}
-
-window#waybar {
-    background: alpha(@background, 0.85);
-    color: @foreground;
-    border-radius: 14px;
-}
-
-#workspaces {
-    margin-left: 8px;
-}
-
-#workspaces button {
-    color: @muted;
-    background: transparent;
-    padding: 0 10px;
-    border-radius: 10px;
-}
-
-#workspaces button.active {
-    background: @accent;
-    color: @background;
-}
-
-#workspaces button:hover {
-    background: @surface;
-}
-
-#window {
-    color: @foreground;
-    padding: 0 15px;
-}
-
+/* All modules */
+#workspaces,
+#window,
 #clock,
-#cpu,
-#memory,
 #pulseaudio,
 #network,
 #battery,
@@ -57,14 +21,68 @@ window#waybar {
     background: @surface;
     color: @foreground;
     padding: 0 12px;
-    margin: 5px;
+    margin: 4px;
+    border-radius: 12px;
+}
+
+/* Workspaces */
+
+#workspaces button {
+    color: @foreground;
+    padding: 0 8px;
     border-radius: 10px;
 }
 
+#workspaces button.active {
+    background: @primary;
+    color: @on_primary;
+}
+
+#workspaces button:hover {
+    background: @secondary_container;
+    color: @on_secondary_container;
+}
+
+/* Clock */
+
+#clock {
+    color: @primary;
+}
+
+/* Audio */
+
+#pulseaudio {
+    color: @secondary;
+}
+
+#pulseaudio.muted {
+    color: @outline;
+}
+
+/* Network */
+
+#network {
+    color: @tertiary;
+}
+
+/* Battery */
+
+#battery {
+    color: @primary;
+}
+
 #battery.warning {
-    color: @warning;
+    color: @error;
 }
 
 #battery.critical {
     color: @error;
+}
+
+/* Tooltip */
+
+tooltip {
+    background: @surface_container;
+    color: @on_surface;
+    border-radius: 8px;
 }

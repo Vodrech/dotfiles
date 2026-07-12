@@ -1,72 +1,63 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 36,
-    "spacing": 8,
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 8,
 
-    "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/window"
-    ],
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
 
-    "modules-center": [
-        "clock"
-    ],
+  "modules-center": [
+    "clock"
+  ],
 
-    "modules-right": [
-        "cpu",
-        "memory",
-        "pulseaudio",
-        "network",
-        "battery",
-        "tray"
-    ],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "battery",
+    "tray"
+  ],
 
-    "hyprland/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": ""
-        },
-        "persistent-workspaces": {
-            "*": 5
-        }
-    },
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "all-outputs": true
+  },
 
-    "hyprland/window": {
-        "max-length": 50
-    },
+  "clock": {
+    "format": "󰥔  {:%H:%M}",
+    "tooltip-format": "{:%A, %d %B %Y}"
+  },
 
-    "clock": {
-        "format": "{:%H:%M}",
-        "tooltip-format": "{:%A, %d %B %Y}"
-    },
+  "pulseaudio": {
+    "format": "󰕾 {volume}%",
+    "format-muted": "󰖁 muted"
+  },
 
-    "cpu": {
-        "format": " CPU {usage}%"
-    },
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰈀 connected",
+    "format-disconnected": "󰤭 disconnected"
+  },
 
-    "memory": {
-        "format": " RAM {}%"
-    },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂"
+    ]
+  },
 
-    "pulseaudio": {
-        "format": " {volume}%"
-    },
-
-    "network": {
-        "format-wifi": " {essid}",
-        "format-disconnected": " Offline"
-    },
-
-    "battery": {
-        "format": " {capacity}%"
-    },
-
-    "tray": {
-        "spacing": 8
-    }
+  "tray": {
+    "spacing": 10
+  }
 }
