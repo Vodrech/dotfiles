@@ -11,8 +11,8 @@ auto_start.setup()
 environment.setup()
 
 -- Defaults
-local terminal    = "kitty"
-local menu        = "hyprlauncher"
+local terminal    = "wezterm"
+local menu        = "rofi"
 
 -----------------------
 ---- LOOK AND FEEL ----
