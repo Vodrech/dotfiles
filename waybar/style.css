@@ -1,4 +1,13 @@
-@import "colors.css";
+@import url("file:///home/vodrech/.cache/mutagen/waybar/colors.css");
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+window#waybar {
+    background: @background;
+    color: @foreground;
+}
 
 * {
     font-family: "JetBrainsMono Nerd Font";
