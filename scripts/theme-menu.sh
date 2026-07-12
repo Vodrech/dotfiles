@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Passes the themes to the walker
 
-THEME=$(printf "catppuccin\nnord\ntokyonight\ngruvbox" | walker -d)
+THEME=$(printf "Red_Black\nBlue_Green" | walker -d)
 
 [ -z "$THEME" ] && exit 0
 
