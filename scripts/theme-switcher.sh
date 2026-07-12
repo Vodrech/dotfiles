@@ -10,7 +10,8 @@ awww img "$WALLPAPER" \
     --transition-duration 1
 
 # Generate colors
-matugen image "$WALLPAPER"
+matugen image "$WALLPAPER" \
+	  --source-color-index 0
 
 # Reload Hyprland
 hyprctl reload
