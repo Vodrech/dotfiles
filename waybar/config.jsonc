@@ -1,121 +1,72 @@
-// -*- mode: jsonc -*-
 {
-    "height": 30, // Waybar height (to be removed for auto height)
-    "spacing": 4, // Gaps between modules (4px)
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "spacing": 8,
+
     "modules-left": [
-	"custom/os-icon",
-	"hyprland/workspaces",
-	"custom/media"
+        "hyprland/workspaces",
+        "hyprland/window"
     ],
+
     "modules-center": [
-	"cpu",
-	"temperature",
-	"memory"
+        "clock"
     ],
+
     "modules-right": [
-	"network",
-	"custom/keyboard",
-	"custom/microphone",
-	"clock"
+        "cpu",
+        "memory",
+        "pulseaudio",
+        "network",
+        "battery",
+        "tray"
     ],
-    "custom/os-icon": {
-	    "format": "",
-	    "tooltip": false
-    },
-        "hyprland/workspaces": {
-        "format": "{name}",
-        "on-click": "activate",
-        "all-outputs": true,
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
         "format-icons": {
-            "active": "",
-            "default": "",
-            "urgent": ""
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": ""
         },
         "persistent-workspaces": {
             "*": 5
         }
     },
-    "hyprland/language": {
-    "format": "<span size='80%'> </span> {}",
-    "format-en": "us",
-    "format-en-colemak": "cole",
-    "keyboard-name": "at-translated-set-2-keyboard",
-    "on-click": "~/.config/waybar/scripts/kb_layout.sh"
-},
-"cpu": {
-  "format": "{usage}%  ",
-  "interval": 10,
-  "max-length": 10
-},
-"memory": {
-  "format": "<span size='80%'>{used}</span> | <span size='80%'>{total}</span><span size='80%'>󰾅</span>"
-},
-"temperature": {
-  "format": "{temperatureC}󰔄",
-  "format-warning": "<span color='yellow'>{temperatureC}󰔄</span>",
-  "format-critical": "<span color='red'>{temperatureC}󰔄</span>",
-  "critical-threshold": 80,
-  "warning-threshold": 50,
-  "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-  "tooltip": false,
-  "interval": 5
-},
-"load": {
-    "interval": 10,
-    "format": "load: {load1}",
-    "max-length": 10
-},
 
-  "pulseaudio": {
-    "format": "{icon}",
-    "on-click": "kitty --class=Wiremix -e wiremix",
-    "on-click-right": "pamixer -t",
-    "tooltip-format": "🎵 {volume}%",
-    "scroll-step": 5,
-    "format-muted": "",
-    "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    }
-  },
+    "hyprland/window": {
+        "max-length": 50
+    },
+
     "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%A, %d %B %Y}"
     },
-"network": {
-"format-wifi": "  {essid}",
-"format-ethernet": "󰈁 | {bandwidthUpBytes}<span size='80%' rise='2pt'> </span> | {bandwidthDownBytes}<span size='80%'> </span>",
-"format-disconnected": "<span color='red'> Disconnected</span>",
-"tooltip": false,
-"on-click": "nm-connection-editor"
-}
-,
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+
+    "cpu": {
+        "format": " CPU {usage}%"
     },
-    "custom/keyboard": {
-	    "format": "{}",
-	    "exec": "~/.config/waybar/scripts/kb_layout.sh",
-	    "interval": 1,
-	    "on-click": "hyprctl switchxkblayout current next",
-	    "tooltip": "false"
+
+    "memory": {
+        "format": " RAM {}%"
     },
-    "custom/microphone": {
-	    "format": "",
-	    "interval": 1,
-	    "tooltip-format": "info 123"
+
+    "pulseaudio": {
+        "format": " {volume}%"
+    },
+
+    "network": {
+        "format-wifi": " {essid}",
+        "format-disconnected": " Offline"
+    },
+
+    "battery": {
+        "format": " {capacity}%"
+    },
+
+    "tray": {
+        "spacing": 8
     }
 }
