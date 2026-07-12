@@ -12,7 +12,7 @@ environment.setup()
 
 -- Defaults
 local terminal    = "wezterm"
-local menu        = "rofi"
+local menu        = "walker"
 
 -----------------------
 ---- LOOK AND FEEL ----
