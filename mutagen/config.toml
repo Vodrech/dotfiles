@@ -1,7 +1,0 @@
-[config]
-mode = "dark"
-scheme = "scheme-tonal-spot"
-
-[templates.waybar]
-input_path = "~/.config/mutagen/templates/waybar.css"
-output_path = "~/.cache/mutagen/waybar/colors.css"
