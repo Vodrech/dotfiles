@@ -5,7 +5,7 @@ local M = {}
 
 function M.setup()
 	hl.on("hyprland.start", function()
-		hl.exec("waybar")
+		hl.exec_cmd("waybar")
 	end)
 end
 
