@@ -4,6 +4,7 @@
 local M = {}
 
 function M.setup()
+	print("Auto Start Module Loaded")
 	hl.on("hyprland.start", function()
 		hl.exec_cmd("waybar")
 	end)
