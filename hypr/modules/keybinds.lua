@@ -3,6 +3,8 @@
 
 local M = {}
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local terminal    = "wezterm"
+local menu        = "walker"
 
 function M.setup()
 	print("Keybinds Module Loaded")

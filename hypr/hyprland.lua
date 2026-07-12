@@ -13,10 +13,6 @@ environment.setup()
 bindings.setup()
 bindings.custom()
 
--- Defaults
-local terminal    = "wezterm"
-local menu        = "walker"
-
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
