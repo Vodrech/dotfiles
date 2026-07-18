@@ -24,7 +24,7 @@ vim.o.laststatus = 3
 vim.o.termguicolors = true
 
 -- -- # LSP -- checkhealth vim.lsp
-vim.lsp.enable({"lua_ls", "rust_analyzer", "ts_ls"})
+vim.lsp.enable({"lua_ls", "rust_analyzer", "ts_ls", "qmls"})
 
 -- IMPORTS
 pcall(require("base")) -- Base configurations
