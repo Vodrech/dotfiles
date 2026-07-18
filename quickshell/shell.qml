@@ -1,2 +1,3 @@
-foeiisfjeoiesjfoseikjh
-kfjsoiefjoseifjeo;sij
+import Quickshell
+Scope {
+}
