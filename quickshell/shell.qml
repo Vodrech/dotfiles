@@ -1,3 +1,6 @@
 import Quickshell
-Scope {
+import "windows"
+
+ShellRoot {
+	Bar {}
 }
