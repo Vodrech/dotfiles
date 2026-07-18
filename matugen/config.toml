@@ -8,4 +8,4 @@ output_path = "~/.cache/matugen/waybar/colors.css"
 
 [templates.quickshell]
 input_path = "~/.config/matugen/templates/quickshell.qml"
-output_path = "~/.cache/matugen/quickshell/colors.qml"
+output_path = "~/.cache/matugen/quickshell/Colors.qml"
