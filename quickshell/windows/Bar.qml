@@ -21,15 +21,37 @@ PanelWindow {
 		anchors.fill: parent
 		color: Theme.Colors.background
 
+		// Left
 		Row {
-			anchors.fill: parent
-			anchors.leftMargin: 12
-			anchors.rightMargin: 12
 			spacing: 12
+			anchors {
+				left: parent.left
+				leftMargin: 12
+				verticalCenter: parent.verticalCenter
+			}
 
 			SystemIcon {}
 
-			Clock {}
+			Workspaces {}
+
+		}
+
+		// Center
+		Clock {
+			anchors.centerIn: parent
+		}
+
+		// Right
+		Row {
+			spacing: 12
+			anchors {
+				right: parent.right
+				rightMargin: 12
+				verticalCenter: parent.verticalCenter
+			}
+
+			KeyboardLayout {}
+			Volume {}
 		}
 	}
 }
