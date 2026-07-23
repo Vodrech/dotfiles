@@ -2,7 +2,7 @@
 
 THEME=$1
 
-WALLPAPER="$HOME/Wallpapers/themes/$THEME.jpg"
+WALLPAPER="$HOME/.assets/wallpapers/$THEME.jpg"
 
 # Change wallpaper
 awww img "$WALLPAPER" \
