@@ -17,8 +17,8 @@ matugen image "$WALLPAPER" \
 hyprctl reload
 
 # Reload Waybar
-pkill waybar
-waybar &
+pkill quickshell
+quickshell &
 
 # Reload Walker theme
 sed -i "s/theme = .*/theme = \"$THEME\"/" \
