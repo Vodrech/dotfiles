@@ -3,10 +3,15 @@ import QtQuick
 import QtQuick.Layouts
 
 import "../components"
+import "../components/base/bar"
+
 import "file:///home/vodrech/.cache/matugen/quickshell" as Theme
 
 PanelWindow {
 	id: bar
+
+	signal settingsClicked()
+	signal systemClicked()
 
 	anchors {
 		top: true
@@ -30,13 +35,19 @@ PanelWindow {
 				verticalCenter: parent.verticalCenter
 			}
 
-			SystemIcon {}
+			BarItem {
+				itemIcon: ""
+				onClicked: {
+					bar.systemClicked()
+				}
+			}
 
 			Workspaces {}
 
 		}
 
 		// Center
+
 		Clock {
 			anchors.centerIn: parent
 		}
@@ -50,8 +61,28 @@ PanelWindow {
 				verticalCenter: parent.verticalCenter
 			}
 
-			KeyboardLayout {}
-			Volume {}
+			BarCategory {
+				onClicked: {
+					bar.settingsClicked()
+				}
+				BarItem {
+					itemIcon: ""
+				}
+
+				BarItem {
+					itemIcon: "󰂯"
+				}
+
+				BarItem {
+					itemIcon: ""
+				}
+			}
+
+			BarItem {
+				itemIcon: ""
+				itemColor: "#fa0040"
+			}
+
 		}
 	}
 }

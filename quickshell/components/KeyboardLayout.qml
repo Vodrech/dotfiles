@@ -10,5 +10,5 @@ Text {
 		MouseArea {
       anchors.fill: parent
       onClicked: KeyboardLayoutService.nextLayout()
-    }
+		}
 }

@@ -5,16 +5,11 @@ import Quickshell
 import Quickshell.Hyprland
 
 QtObject {
-    readonly property var workspaces: Hyprland.workspaces
+    readonly property var workspaces: Hyprland.workspaces.values
     readonly property var activeWorkspace: Hyprland.focusedWorkspace
 
     function switchTo(id) {
-        for (const ws of workspaces) {
-            if (ws.id === id) {
-                ws.activate()
-                return
-            }
-        }
+        Hyprland.dispatch("hl.dsp.focus({ workspace = " + id + " })")
     }
 
     function isActive(id) {

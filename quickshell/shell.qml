@@ -1,6 +1,6 @@
 import Quickshell
-import "windows"
 
 ShellRoot {
+	id: root
 	Bar {}
 }

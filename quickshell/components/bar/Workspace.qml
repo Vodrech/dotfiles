@@ -1,5 +1,9 @@
+// Handles the Workspace Widget
+
 import QtQuick
-import "../services"
+import "../../services"
+import "../../" // Core
+
 import "file:///home/vodrech/.cache/matugen/quickshell" as Theme
 
 Row {
@@ -9,18 +13,18 @@ Row {
         model: WorkspaceService.workspaces
 
         Rectangle {
-            width: 24
-            height: 24
-            radius: 12
+            width: Core.barHeight - 10
+            height: Core.barHeight - 10
+						radius: 3
 
             color: WorkspaceService.isActive(modelData.id)
                 ? Theme.Colors.primary
-                : Theme.Colors.foreground
+                : Theme.Colors.surfaceVariant
 
             Text {
                 anchors.centerIn: parent
                 text: modelData.id
-                color: Theme.Colors.text
+                color: Theme.Colors.background
             }
 
             MouseArea {
