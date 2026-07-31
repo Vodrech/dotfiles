@@ -2,10 +2,14 @@
 mode = "dark"
 scheme = "scheme-tonal-spot"
 
-[templates.waybar]
-input_path = "~/.config/matugen/templates/waybar.css"
-output_path = "~/.cache/matugen/waybar/colors.css"
+# [templates.waybar]
+# input_path = "~/.config/matugen/templates/waybar.css"
+# output_path = "~/.cache/matugen/waybar/colors.css"
 
 [templates.quickshell]
 input_path = "~/.config/matugen/templates/quickshell.qml"
 output_path = "~/.cache/matugen/quickshell/Colors.qml"
+
+[templates.walker]
+input_path = "~/.config/matugen/templates/walker.css"
+output_path = "~/.cache/matugen/walker/colors.css"
