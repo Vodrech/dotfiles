@@ -7,7 +7,7 @@ import "file:///home/vodrech/.cache/matugen/quickshell" as Theme
 import "../../"
 
 Text {
-	text: Hyprland.activeToplevel ? Hyprland.activeToplevel.title : "<missing>"
+	text: Hyprland.activeToplevel ? Hyprland.activeToplevel.title : ""
 	font.pixelSize: Core.barTextSize
 	color: Theme.Colors.primary
 }
