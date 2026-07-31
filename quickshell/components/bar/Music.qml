@@ -5,6 +5,9 @@ import Quickshell.Wayland
 import Quickshell.Services.Pipewire
 import Quickshell.Io
 
+import "file:///home/vodrech/.cache/matugen/quickshell" as Theme
+import "../../"
+
 Item {
     id: volumeRoot
     implicitWidth: barContent.implicitWidth
@@ -15,7 +18,7 @@ Item {
     property bool isMuted: false
 
     PwObjectTracker {
-        objects: [ Pipewire.nodes ]
+        objects: [ Pipewire.nodes, Pipewire.links ]
     }
 
     Process {
@@ -35,6 +38,7 @@ Item {
 
     Process { id: setVolProc }
     Process { id: appVolProc }
+    Process { id: setDefaultSinkProc }
 
     function syncVolume() {
         if (!getVolProc.running) getVolProc.running = true
@@ -52,10 +56,21 @@ Item {
         appVolProc.running = true
     }
 
+    function toggleAppMute(nodeId, currentMuted) {
+        appVolProc.command = ["wpctl", "set-mute", `${nodeId}`, currentMuted ? "0" : "1"]
+        appVolProc.running = true
+    }
+
     function toggleMute() {
         volumeRoot.isMuted = !volumeRoot.isMuted
         setVolProc.command = ["wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle"]
         setVolProc.running = true
+    }
+
+    function setDefaultSink(nodeId) {
+        setDefaultSinkProc.command = ["wpctl", "set-default", `${nodeId}`]
+        setDefaultSinkProc.running = true
+        syncVolume()
     }
 
     Component.onCompleted: volumeRoot.syncVolume()
@@ -100,14 +115,14 @@ Item {
 
         Text {
             text: volumeRoot.getVolumeIcon()
-            color: volumeRoot.popupVisible ? "#87d6bd" : "#dee4e0"
-            font.pixelSize: 15
+						color: Theme.Colors.primary
+						font.pixelSize: Core.barIconMedium
         }
 
         Text {
             text: volumeRoot.isMuted ? "Muted" : `${volumeRoot.volumeLevel}%`
-            color: volumeRoot.popupVisible ? "#87d6bd" : "#dee4e0"
-            font.pixelSize: 13
+            color: Theme.Colors.primary
+						font.pixelSize: Core.barTextSize
             font.weight: Font.Medium
         }
     }
@@ -141,7 +156,6 @@ Item {
 
         anchors { top: true; left: true }
         margins {
-            top: barContent.height + 4
             left: volumeRoot.mapToItem(null, 0, 0).x - (width / 2) + (volumeRoot.width / 2)
         }
 
@@ -166,14 +180,111 @@ Item {
                     anchors.margins: 12
                     spacing: 12
 
-                    // 1. MASTER VOLUME
+                    // 1. OUTPUT DEVICE (SINK) SELECTION
+                    Text {
+                        text: "Output Device"
+                        color: "#89938e"
+                        font.pixelSize: 10
+                        font.weight: Font.Bold
+                    }
+
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 4
+
+                        Repeater {
+                            model: Pipewire.nodes
+
+                            delegate: Item {
+                                id: sinkItem
+                                required property PwNode modelData
+
+                                PwObjectTracker {
+                                    objects: [ sinkItem.modelData ]
+                                }
+
+                                readonly property var props: (modelData && modelData.properties) ? modelData.properties : {}
+                                
+                                readonly property bool isAudioSink: {
+                                    if (!modelData || !modelData.audio) return false
+                                    if (!modelData.isSink) return false
+                                    if (modelData.isStream) return false
+                                    return true
+                                }
+
+                                readonly property string sinkTitle: {
+                                    if (!modelData) return ""
+                                    if (props["node.description"]) return props["node.description"]
+                                    if (props["description"]) return props["description"]
+                                    if (modelData.description && modelData.description !== "") return modelData.description
+                                    return modelData.name || ""
+                                }
+
+                                readonly property bool isCurrentSink: {
+                                    if (!modelData) return false
+                                    if (modelData.isDefault) return true
+                                    let defName = Pipewire.defaultAudioSink ? Pipewire.defaultAudioSink.name : ""
+                                    if (defName !== "" && modelData.name === defName) return true
+                                    return false
+                                }
+
+                                visible: isAudioSink
+                                Layout.fillWidth: true
+                                implicitHeight: isAudioSink ? sinkRow.implicitHeight : 0
+
+                                RowLayout {
+                                    id: sinkRow
+                                    anchors.fill: parent
+                                    spacing: 8
+
+                                    Rectangle {
+                                        Layout.fillWidth: true
+                                        implicitHeight: 28
+                                        radius: 6
+                                        color: sinkItem.isCurrentSink ? "#1f332a" : "#141c18"
+                                        border.color: sinkItem.isCurrentSink ? Theme.Colors.primary : "#2a352f"
+                                        border.width: 1
+
+                                        RowLayout {
+                                            anchors.fill: parent
+                                            anchors.leftMargin: 8
+                                            anchors.rightMargin: 8
+
+                                            Text {
+                                                text: (sinkItem.isCurrentSink ? "󰓃 " : "󰓄 ") + sinkItem.sinkTitle
+                                                color: sinkItem.isCurrentSink ? Theme.Colors.primary : "#dee4e0"
+                                                font.pixelSize: 11
+                                                font.weight: sinkItem.isCurrentSink ? Font.Bold : Font.Normal
+                                                Layout.fillWidth: true
+                                                elide: Text.ElideRight
+                                            }
+                                        }
+
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            onClicked: {
+                                                volumeRoot.keepOpen()
+                                                if (sinkItem.modelData) {
+                                                    volumeRoot.setDefaultSink(sinkItem.modelData.id)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Rectangle { Layout.fillWidth: true; implicitHeight: 1; color: "#2a352f" }
+
+                    // 2. MASTER VOLUME
                     RowLayout {
                         Layout.fillWidth: true
 
                         Text {
                             text: "Master Volume"
                             color: "#89938e"
-                            font.pixelSize: 11
+                            font.pixelSize: 10
                             font.weight: Font.Bold
                         }
 
@@ -181,8 +292,8 @@ Item {
 
                         Text {
                             text: volumeRoot.isMuted ? "Muted" : `${volumeRoot.volumeLevel}%`
-                            color: volumeRoot.isMuted ? "#89938e" : "#87d6bd"
-                            font.pixelSize: 11
+                            color: volumeRoot.isMuted ? "#89938e" : Theme.Colors.primary
+                            font.pixelSize: 10
                             font.weight: Font.Bold
                         }
                     }
@@ -199,7 +310,7 @@ Item {
                         Rectangle {
                             anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter
                             width: parent.width * (volumeRoot.volumeLevel / 100); height: 6; radius: 3
-                            color: volumeRoot.isMuted ? "#5e6964" : "#87d6bd"
+                            color: volumeRoot.isMuted ? "#5e6964" : Theme.Colors.primary
                         }
                         Rectangle {
                             x: Math.max(0, Math.min(sliderTrack.width - width, (sliderTrack.width * (volumeRoot.volumeLevel / 100)) - (width / 2)))
@@ -222,7 +333,7 @@ Item {
 
                     Rectangle { Layout.fillWidth: true; implicitHeight: 1; color: "#2a352f" }
 
-                    // 2. PLAYING APPLICATIONS LIST
+                    // 3. PLAYING APPLICATIONS LIST
                     Text {
                         text: "Playing Applications"
                         color: "#89938e"
@@ -273,7 +384,6 @@ Item {
                                     let rawName = (modelData.name || "").toLowerCase()
                                     let appProcess = (props["application.process.binary"] || "").toLowerCase()
 
-                                    // Filter out system utility apps, volume controllers, and monitors
                                     if (title === "" ||
                                         title.includes("peak") ||
                                         title.includes("monitor") ||
@@ -293,6 +403,10 @@ Item {
                                                                     ? appItem.modelData.audio.volume 
                                                                     : 1.0
 
+                                readonly property bool isAppMuted: (appItem.modelData && appItem.modelData.audio)
+                                                                    ? appItem.modelData.audio.muted
+                                                                    : false
+
                                 visible: isAppPlaybackStream
                                 Layout.fillWidth: true
                                 implicitHeight: isAppPlaybackStream ? appBox.implicitHeight : 0
@@ -303,7 +417,7 @@ Item {
                                     spacing: 4
 
                                     RowLayout {
-                                        Layout.fillWidth: type
+                                        Layout.fillWidth: true
 
                                         Text {
                                             text: "󰎆 " + appItem.appTitle
@@ -315,8 +429,24 @@ Item {
                                         }
 
                                         Text {
+                                            text: appItem.isAppMuted ? "󰝟" : "󰕾"
+                                            color: appItem.isAppMuted ? "#89938e" : Theme.Colors.primary
+                                            font.pixelSize: 12
+
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                onClicked: {
+                                                    volumeRoot.keepOpen()
+                                                    if (appItem.modelData) {
+                                                        volumeRoot.toggleAppMute(appItem.modelData.id, appItem.isAppMuted)
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        Text {
                                             text: `${Math.round(appItem.currentVol * 100)}%`
-                                            color: "#87d6bd"
+                                            color: Theme.Colors.primary
                                             font.pixelSize: 10
                                             font.weight: Font.Bold
                                         }
@@ -335,7 +465,7 @@ Item {
                                         Rectangle {
                                             anchors.left: parent.left; anchors.verticalCenter: parent.verticalCenter
                                             width: parent.width * appItem.currentVol
-                                            height: 4; radius: 2; color: "#87d6bd"
+                                            height: 4; radius: 2; color: appItem.isAppMuted ? "#5e6964" : Theme.Colors.primary
                                         }
 
                                         Rectangle {

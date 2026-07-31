@@ -68,9 +68,11 @@ PanelWindow {
 							anchors.centerIn: parent
 						}
 
+						Item { Layout.fillWidth: true }
+
 						Music {}
 
-						Item { Layout.fillWidth: true }
+						Keyboard {}
 
             // 3. RIGHT SECTION (Grouped for consistency)
             RowLayout {
