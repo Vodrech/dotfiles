@@ -22,6 +22,37 @@ function M.setup()
 		position = "1920x1440",
 		scale = "1",
 	})
+
+	-- Window Rules
+	hl.workspace_rule({
+		workspace = "1",
+		monitor = "HDMI-A-1"
+	})
+	hl.workspace_rule({
+		workspace = "2",
+		monitor = "DP-2"
+	})
+	hl.workspace_rule({
+		workspace = "3",
+		monitor = "HDMI-A-1"
+	})
+	hl.workspace_rule({
+		workspace = "4",
+		monitor = "DP-2"
+	})
+
+	hl.window_rule({
+    match = {
+        class = "discord",
+    },
+    workspace = "2",
+	})
+	hl.window_rule({
+    match = {
+        class = "bolt-launcher",
+    },
+    workspace = "4",
+	})
 end
 
 return M
