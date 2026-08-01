@@ -1,44 +1,38 @@
 @import url("file:///home/vodrech/.cache/matugen/walker/colors.css");
 
-/* Main Window background and general text color */
-#window {
-    background-color: @background;
-    color: @on_background;
-    border: 2px solid @primary;
-    border-radius: 16px;
-    padding: 10px;
+* { 
+  all: unset; 
+  font-family: monospace; 
+  font-size: 18px; 
+  color: @foreground; 
 }
 
-/* The search input bar at the top */
-input {
-    background-color: @surface;
-    color: @on_surface;
-    border: 1px solid @outline;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
+scrollbar { opacity: 0; }
+.normal-icons { -gtk-icon-size: 16px; } 
+.large-icons { -gtk-icon-size: 32px; }
+
+.box-wrapper {
+  background-color: @surface;
+  padding: 12px;
+  border: 2px solid @primary;
+  border-radius: 12px;
 }
 
-/* The results list container */
-list {
-    background-color: transparent;
+.search-container { padding: 10px; }
+
+.input { 
+  color: @primary; 
 }
 
-/* Individual items in the search results */
-row {
-    padding: 8px 12px;
-    border-radius: 6px;
-    color: @on_surface;
+child:selected .item-box { 
+  background: linear-gradient(90deg, @primary_container 0%, transparent 100%); 
+  border-radius: 8px; 
 }
 
-/* Highlight/Selection state when navigating with arrow keys */
-row:selected {
-    background-color: @primary-container;
-    color: @on_primary_container;
+child:selected .item-box * { 
+  color: @foreground; 
 }
 
-/* Hover state if using the mouse */
-row:hover {
-    background-color: @surface-variant;
-    color: @on_surface_variant;
-}
+.item-box { padding-left: 14px; }
+.item-text-box { padding: 14px 0; }
+.item-image { margin-right: 14px; }
