@@ -3,27 +3,25 @@
 THEME=$1
 WALLPAPER="$HOME/.assets/wallpapers/$THEME.jpg"
 
-# 1. Start wallpaper animation in background (non-blocking)
+# 1. Start wallpaper animation in background
 awww img "$WALLPAPER" \
     --transition-type grow \
     --transition-duration 1 &
 
-# 2. Run matugen synchronously (WAIT until all color files are saved to disk)
+# 2. Run matugen synchronously so files are fully written first
 matugen image "$WALLPAPER" --source-color-index 0
 
-# 3. Safely kill Quickshell and WAIT for process to fully terminate
-if pgrep -x quickshell > /dev/null; then
-    pkill -x quickshell
-    while pgrep -x quickshell > /dev/null; do 
-        sleep 0.05 
-    done
-fi
+# 3. Forcefully kill any running quickshell instance and wait for it to drop
+pkill -9 -f quickshell
+while pgrep -f quickshell > /dev/null; do
+    sleep 0.05
+done
 
-# 4. Relaunch Quickshell with new colors loaded
+# 4. Relaunch Quickshell fresh
 quickshell &
 
 # 5. Reload Hyprland
 hyprctl reload
 
-# 6. Update Walker theme
+# 6. Update Walker config theme
 sed -i "s/theme = .*/theme = \"$THEME\"/" ~/.config/walker/config.toml
