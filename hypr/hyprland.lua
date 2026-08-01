@@ -1,11 +1,14 @@
 print("Hyprland Lua Configuration Loaded")
 
+package.path = package.path .. ";/home/vodrech/.cache/matugen/hyprland/?.lua"
+
 -- Loading the Modules
 local monitor = require("modules.monitor")
 local auto_start = require("modules.auto_start")
 local environment = require("modules.environment")
 local bindings = require("modules.keybinds")
 local inputs = require("modules.inputs")
+local custom_colors = require("colors")
 
 -- Setup the modules
 monitor.setup()
@@ -29,12 +32,10 @@ hl.config({
         gaps_out = 20,
 
         border_size = 2,
-
-        col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+				col = {
+					active_border = { colors = { custom_colors.primary, custom_colors.tertiary }, angle = 45 },
+            inactive_border = custom_colors.surface_variant,
         },
-
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
         resize_on_border = false,
 

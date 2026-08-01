@@ -6,6 +6,10 @@ scheme = "scheme-tonal-spot"
 # input_path = "~/.config/matugen/templates/waybar.css"
 # output_path = "~/.cache/matugen/waybar/colors.css"
 
+[templates.hyprland]
+input_path = "~/.config/matugen/templates/hyprland.lua"
+output_path = "~/.cache/matugen/hyprland/colors.lua"
+
 [templates.quickshell]
 input_path = "~/.config/matugen/templates/quickshell.qml"
 output_path = "~/.cache/matugen/quickshell/Colors.qml"
@@ -13,3 +17,4 @@ output_path = "~/.cache/matugen/quickshell/Colors.qml"
 [templates.walker]
 input_path = "~/.config/matugen/templates/walker.css"
 output_path = "~/.cache/matugen/walker/colors.css"
+
