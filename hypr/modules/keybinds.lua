@@ -62,6 +62,7 @@ end
 function M.custom()
 	print("Keybinds Custom Loaded")
 	hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("~/.config/scripts/theme-menu.sh"), { release = true, locked = true })
+	hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("hyprctl switchxkblayout current next"), { release = true, locked = true })
 end
 
 return M
