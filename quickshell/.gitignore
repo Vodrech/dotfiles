@@ -1,0 +1,2 @@
+# Appointments now live in ~/.local/share/quickshell-bar/; this keeps an old copy out of the repo.
+appointments.json
