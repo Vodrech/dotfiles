@@ -53,8 +53,7 @@ Singleton {
 
     FileView {
         id: file
-        // Outside the shell folder, so the bar files can be replaced or shared without it.
-        path: (Quickshell.env("XDG_DATA_HOME") || Quickshell.env("HOME") + "/.local/share") + "/quickshell-bar/appointments.json"
+        path: Paths.data("appointments.json")
         watchChanges: true                 // pick up hand edits to the file
         onFileChanged: reload()
         onLoadFailed: error => {

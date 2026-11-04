@@ -13,6 +13,13 @@ Singleton {
     readonly property string chevronLeft: String.fromCodePoint(0xf0141)
     readonly property string close: String.fromCodePoint(0xf0156)
     readonly property string chevronRight: String.fromCodePoint(0xf0142)
+    readonly property string fileText: String.fromCodePoint(0xf0219)
+    readonly property string copy: String.fromCodePoint(0xf018f)
+    readonly property string openExternal: String.fromCodePoint(0xf03cc)
+    readonly property string folder: String.fromCodePoint(0xf024b)
+    readonly property string markdown: String.fromCodePoint(0xf0354)
+    readonly property string arrowUp: String.fromCodePoint(0xf005d)
+    readonly property string home: String.fromCodePoint(0xf02dc)
 
     readonly property string volumeHigh: String.fromCodePoint(0xf057e)
     readonly property string volumeMedium: String.fromCodePoint(0xf0580)

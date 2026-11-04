@@ -27,7 +27,7 @@ PanelWindow {
 
     function open() {
         if (anchorItem) {
-            const x = Theme.gap + anchorItem.mapToItem(bar.contentItem, 0, 0).x - Theme.spacing;
+            const x = Theme.barMargin + anchorItem.mapToItem(bar.contentItem, 0, 0).x - Theme.spacing;
             _left = Math.max(Theme.gap, Math.min(x, screen.width - implicitWidth - Theme.gap));
         }
         visible = true;
@@ -52,7 +52,7 @@ PanelWindow {
 
     anchors.top: true
     anchors.left: anchorItem !== null
-    margins.top: Theme.gap + Theme.barHeight + Theme.gap
+    margins.top: Theme.barMargin + Theme.barHeight + Theme.gap
     margins.left: _left
     exclusionMode: ExclusionMode.Ignore
 

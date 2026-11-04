@@ -7,9 +7,21 @@ PanelWindow {
 
     screen: modelData
     anchors { top: true; left: true; right: true }
-    margins { top: Theme.gap; left: Theme.gap; right: Theme.gap }
+    margins { top: Theme.barMargin; left: Theme.barMargin; right: Theme.barMargin }
     implicitHeight: Theme.barHeight
     color: "transparent"
+
+    // One continuous bar; the modules sit on it in three groups.
+    Rectangle {
+        anchors.fill: parent
+        color: Theme.base
+
+        Rectangle {
+            anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
+            height: 1
+            color: Theme.surface0
+        }
+    }
 
     Island {
         anchors.left: parent.left
@@ -19,7 +31,15 @@ PanelWindow {
         WindowTitle {}
     }
 
+    // Just left of the clock, so the clock stays centred.
     Island {
+        anchors.right: center.left
+        padding: 0
+        TextPreview { bar: bar }
+    }
+
+    Island {
+        id: center
         anchors.horizontalCenter: parent.horizontalCenter
         Clock { bar: bar }
     }

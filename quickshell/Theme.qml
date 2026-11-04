@@ -28,8 +28,9 @@ Singleton {
     readonly property int fontSize: 13
     readonly property int iconSize: 16
 
-    readonly property int barHeight: 34
-    readonly property int gap: 6          // space between bar and screen edges
+    readonly property int barHeight: 30
+    readonly property int barMargin: 0    // space between bar and screen edges
+    readonly property int gap: 6          // space between bar and dropdowns
     readonly property int radius: 12
     readonly property int spacing: 14     // between modules inside an island
     readonly property int animMs: 200
