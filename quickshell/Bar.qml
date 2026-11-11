@@ -26,6 +26,7 @@ PanelWindow {
     Island {
         anchors.left: parent.left
         Launcher { bar: bar }
+        Games { bar: bar }
         Apps { bar: bar }
         Workspaces { shellScreen: bar.screen }
         WindowTitle {}

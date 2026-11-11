@@ -20,6 +20,7 @@ Singleton {
     readonly property string markdown: String.fromCodePoint(0xf0354)
     readonly property string arrowUp: String.fromCodePoint(0xf005d)
     readonly property string home: String.fromCodePoint(0xf02dc)
+    readonly property string gamepad: String.fromCodePoint(0xf0297)
 
     readonly property string volumeHigh: String.fromCodePoint(0xf057e)
     readonly property string volumeMedium: String.fromCodePoint(0xf0580)
